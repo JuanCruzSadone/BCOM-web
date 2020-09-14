@@ -1,0 +1,49 @@
+<div class="card text-center">
+    <form name="form" (submit)="onSubmit()" [formGroup]="form">
+    <div class="card-header">
+        <p *ngIf="!customer">Nuevo cliente</p><p *ngIf="customer">Editar cliente</p>
+        <app-alert-success *ngIf="showMessage" [message]="message"></app-alert-success>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm">
+            <label for="customerName">Nombre:</label>
+            <input type="text" class="form-control" id="customerName" formControlName="customerName">
+            <small id="customerNameTxt" class="form-text text-muted">Max. 30 caracteres</small>
+            </div>
+            <div class="col-sm">
+            <label for="lastname">Apellido:</label>
+            <input type="text" class="form-control" id="lastname" formControlName="lastName">
+            <small id="lastnameTxt" class="form-text text-muted">Max. 30 caracteres</small>
+            </div>
+            <div class="col-sm">
+            <label for="dni">Dni:</label>
+            <input type="text" class="form-control" id="dni" formControlName="dni">
+            </div>
+        </div>
+
+        <table class="table table-dark mt-4">
+            <thead>
+                <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Fecha</th>
+                </tr>
+            </thead>
+            <tbody >
+                <tr *ngFor="let t of transactions; let i = index">
+                <th scope="row">{{i+1}}</th>
+                <td>{{t.transactionStatus}}</td>
+                <td>{{t.transactionDate  | date:'dd/MM/yyyy'}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <div class="card-footer">
+        <button *ngIf="!customer" type="submit" class="btn btn-success mr-3">Guardar</button>
+        <button *ngIf="customer" type="submit" class="btn btn-success mr-3">Editar</button>
+        <button type="button" routerLink="/customer" class="btn btn-dark">Cancelar</button>
+    </div>
+    </form>
+  </div>

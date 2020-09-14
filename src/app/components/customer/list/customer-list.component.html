@@ -1,0 +1,28 @@
+<div class="card">
+    <div class="card-header">
+        <button routerLink="/customer/new" type="button" class="btn btn-success mb-3">Nuevo cliente</button> 
+        <app-alert-success *ngIf="showMessage" [message]="message"></app-alert-success>
+    </div>
+    <div class="card-body">
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Dni</th>
+                <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let c of customers; let i = index">
+                <th scope="row">{{i+1}}</th>
+                <td>{{c.customerName}}</td>
+                <td>{{c.lastName}}</td>
+                <td>{{c.dni}}</td>
+                <td><a (click)="edit(i)" class="badge badge-light">Editar</a><a (click)="delete(i)" class="badge badge-light ml-3">Eliminar</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
